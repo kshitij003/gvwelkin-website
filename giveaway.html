@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>giveaway.html</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("1714067877450.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .entry-image img {
+            position: absolute;
+            top: 62%;
+            left: 35%;
+            width: 30%;
+            height: auto;
+        }
+
+        .photo-image::before {
+            content: "";
+            position: absolute;
+            top: 19%;
+            left: 38%;
+            width: 20.5%;
+            height: 37%;
+            background: #000;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        .photo-image img {
+            position: absolute;
+            top: 5%;
+            left: 12%;
+            width: 70%;
+            height: 70%;
+        }
+
+        .foreground2-image img {
+            position: absolute;
+            top: 10% !important;
+            left: 15%;
+            max-width: 70%;
+            height: auto;
+        }
+
+        #entry-message {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            display: none;
+            z-index: 4;
+        }
+
+        #entry-message2 {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            display: none;
+            z-index: 4;
+        }
+
+        .foreground-image {
+            position: absolute;
+            width: 70px;
+            height: auto;
+        }
+
+        #point {
+            top: 10%;
+            right: 12%;
+            transform: translate(50%, -50%);
+        }
+
+        .user-points {
+            background-color: rgba(0, 0, 0, 0.0);
+            color: rgb(245, 237, 14);
+            padding: 10px;
+            border-radius: 5px;
+            position: fixed;
+            top: -2%;
+            right: 5%;
+            width: auto;
+            height: 30px;
+            font-size: 50px;
+        }
+
+        .timer-container {
+            position: absolute;
+            top: 8%;
+            left: 39%;
+            width: 300px;
+            height: 100px;
+            background-image: url("20240426_113351.png");
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        @media (max-width: 1200px) {
+            .entry-image img {
+                width: 50%;
+            }
+
+            .foreground2-image img {
+                left:35%;
+                width: 90%;
+            }
+
+            #point {
+                width: 50px;
+            }
+
+            .user-points {
+                font-size: 4vw;
+            }
+
+            .timer-container {
+                width: 200px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .entry-image img {
+                width: 70%;
+            }
+
+            .foreground2-image img {
+                width: 100%;
+            }
+
+            #point {
+                width: 40px;
+            }
+
+            .user-points {
+                font-size: 5vw;
+            }
+
+            .timer-container {
+                width: 150px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .entry-image img {
+                width: 80%;
+            }
+
+            .foreground2-image img {
+                width: 100%;
+            }
+
+            #point {
+                width: 30px;
+            }
+
+            .user-points {
+                font-size: 6vw;
+            }
+
+            .timer-container {
+                width: 120px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .entry-image img {
+                top:50%;
+                width: 50%;
+            }
+
+            .foreground2-image img {
+                width: 100%;
+            }
+
+            #point {
+                width: 30px;
+            }
+
+            .user-points {
+                font-size: 6vw;
+            }
+
+            .timer-container {
+                width: 120px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="foreground2-image">
+        <img src="1714069134969.png" alt="Foreground Image 4">
+    </div>
+
+    <div class="entry-image" >
+        <img id="entry-img" src="20240425_234203.png" alt="Foreground Image 2">
+    </div>
+
+    <div id="entry-message">Entry Successful</div>
+    <div id="entry-message2">Entry Successful</div>
+    <img id="point" class="foreground-image" src="1710328702878.png" alt="Foreground Image 6">
+    <div class="user-points">   
+        <p id="points-display">-</p>
+    </div>
+    <div class="timer-container" id="timerContainer"></div>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const userId = localStorage.getItem('userId');
+
+if (!userId) {
+    alert('User ID not found. Please log in again.');
+    window.location.href = 'login.html';
+    return;
+}
+async function enterGiveaway(userId) {
+    console.log('clicked');
+    try {
+        const response = await fetch(`http://localhost:3000/giveaway?userId=${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert(data.message);
+            document.getElementById('entry-message').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('entry-message').style.display = 'none';
+            }, 3000); // Hide the message after 3 seconds
+        } else {
+            const errorData = await response.json();
+            console.error('Failed to enter giveaway:', errorData.message);
+            alert('Failed to enter giveaway: ' + errorData.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+            async function fetchUserPoints(userId) {
+                try {
+                    const response = await fetch(`http://localhost:3000/points?userId=${userId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include'
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        document.getElementById('points-display').textContent = data.points;
+                    } else {
+                        console.error('Failed to fetch points');
+                        alert('Failed to fetch points');
+                    }
+                } catch (error) {
+                    console.error('Error fetching user points:', error);
+                }
+            }
+
+            fetchUserPoints(userId);
+            setInterval(() => fetchUserPoints(userId), 3000);
+
+            function updateTimerDisplay(timeLeft) {
+                const timerContainer = document.getElementById('timerContainer');
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerContainer.textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+
+            function startTimer() {
+                let timeLeft = localStorage.getItem('timeLeft');
+
+                if (timeLeft === null || isNaN(timeLeft)) {
+                    timeLeft = 300;
+                } else {
+                    timeLeft = parseInt(timeLeft);
+                }
+
+                updateTimerDisplay(timeLeft);
+
+                const timerInterval = setInterval(() => {
+                    timeLeft--;
+
+                    updateTimerDisplay(timeLeft);
+                    localStorage.setItem('timeLeft', timeLeft.toString());
+
+                    if (timeLeft === 0) {
+                        clearInterval(timerInterval);
+                        alert('Time is up!');
+                    }
+                }, 1000);
+            }
+
+            startTimer();
+
+            document.querySelector('.entry-image').addEventListener('click', function() {
+            enterGiveaway(userId);
+        });
+        });
+    </script>
+</body>
+</html>
+
+
+      
+   

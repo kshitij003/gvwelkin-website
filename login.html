@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            background-size: cover;
+            background-image: url("https://wallpaperaccess.com/full/3628936.jpg");
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+        }
+
+        .login-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form class="login-form" id="login-form">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <button type="button" onclick="login()">Login</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    async function login() {
+        // Get form data
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Construct request body
+        const requestBody = {
+            username: username,
+            password: password
+        };
+
+        try {
+            // Make POST request to backend
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json' // Set content type to JSON
+                },
+                body: JSON.stringify(requestBody) // Convert request body to JSON string
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const userId = data.userId; // Get userId from response
+
+                // Store userId in local storage
+                localStorage.setItem('userId', userId);
+
+                // Redirect to index1.html upon successful login
+                window.location.href = 'index1.html';
+            } else {
+                // Handle failed login (e.g., display error message)
+                console.error('Login failed:', response.statusText);
+                alert('Login failed: ' + response.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error: ' + error.message);
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image: url('https://images8.alphacoders.com/134/1342209.png'); /* Background image */
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Added for positioning pseudo-elements */
+}
+
+.lamp-overlay {
+    position: absolute;
+    top: 56px; /* Adjust the top position according to the position of the lamp */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px; /* Adjust the width according to the size of the lamp */
+    height: 100px; /* Adjust the height according to the size of the lamp */
+    background-color: rgba(245, 214, 13, 0.838); /* Semi-transparent white color */
+    border-radius: 50%;
+    animation: lampOnOff 2s infinite alternate, wind 2s infinite alternate; /* On-off and wind animations */
+}
+
+@keyframes lampOnOff {
+    0% {
+        opacity: 1; /* Lamp is on */
+    }
+    50% {
+        opacity: 0; /* Lamp is off */
+    }
+    100% {
+        opacity: 1; /* Lamp is on */
+    }
+}
+
+@keyframes wind {
+    0% {
+        transform: translateX(0); /* No wind effect */
+    }
+    50% {
+        transform: translateX(10px); /* Wind blowing right */
+    }
+    100% {
+        transform: translateX(0); /* No wind effect */
+    }
+}
+
+header {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the header */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.hero {
+    height: calc(100% - 60px); /* Adjust the height accordingly */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #ff4d00;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the footer */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+

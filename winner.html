@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rules.html</title>
+    <style>
+         body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("3628937.jpg"); /* Background image URL */
+            background-size: cover; /* Ensure the entire image fits within the background */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            background-position: center center; /* Center the background */
+            color: #131212; /* Dark gray text color */
+            height: 100vh; /* Set the height of the body to 100% of the viewport height */
+            overflow: hidden; /* Hide any overflow content */
+            position: relative; /* Ensure positioned elements inside body are relative to it */
+        }
+
+        .content {
+            padding: 20px; /* Add padding to the content */
+            text-align: center; /* Center align the content */
+            position: absolute; /* Position the content absolutely */
+            top: 22%; /* Move the content 50% from the top */
+            left: 48%; /* Move the content 50% from the left */
+            transform: translate(-50%, -50%); /* Center the content horizontally and vertically */
+            z-index: 3; /* Ensure the content is above the foreground image */
+            font-size:24px;
+            color:#0a0909;
+            font:bold;
+            opacity:0.8;
+        }
+
+        h1 {
+            opacity:0;
+            color: #020202; /* White heading color */
+            animation: fadeIn 0.5s ease-in-out 1000ms forwards; /* Animate the opacity change after 5000ms */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Start with opacity 0 */
+            }
+            to {
+                opacity: 0.8; /* End with opacity 1 */
+            }
+        }
+
+
+        p {
+            color: #fff; /* White paragraph text color */
+            line-height: 1.6; /* Set the line height for paragraphs */
+        }
+        .foreground1-image {
+            position: absolute; /* Position the foreground image absolutely */
+            top: 40%; /* Position the foreground image vertically at 50% from the top */
+            left: 40%; /* Position the foreground image horizontally at 50% from the left */
+            height:auto;
+            max-width: auto; /* Limit the maximum width of the foreground image */
+            max-height: 30%; /* Limit the maximum height of the foreground image */
+            z-index: 2; /* Ensure the foreground image is above the background */
+            transition: transform 5s ease; /* Add transition for smoother animation */
+            position: absolute; /* Position the image absolutely */
+            top: 69%; /* Position the image at the bottom of the page */
+            left: 48%; /* Center the image horizontally */
+            transform: translateX(-50%) translateY(-100%); /* Initially translate image up by 100% of its own height */
+        }
+        .slide-up {
+            transform: translateX(-50%) translateY(100%); /* Initially translate image down by 100% of its own height */
+}
+.foreground-image {
+            position: absolute; /* Position the foreground image absolutely */
+            top: 15%; /* Position the foreground image vertically at 50% from the top */
+            left: 34%; /* Position the foreground image horizontally at 50% from the left */
+            max-width: 25%; /* Limit the maximum width of the foreground image */
+            max-height: auto; /* Limit the maximum height of the foreground image */
+            z-index: 2; /* Ensure the foreground image is above the background */
+            opacity:0.8;
+        }
+        .rule {
+    padding: 20px; /* Add padding to the rule section */
+    position: absolute; /* Position the rules absolutely */
+    top: 53%; /* Move the rules 50% from the top */
+    left: 64%; /* Move the rules 50% from the left */
+    transform: translate(-50%, -50%); /* Center the rules horizontally and vertically */
+    z-index: 3; /* Ensure the rules are above the foreground images */
+    color: #090808; /* White text color for the rules */
+    background-color: transparent; /* Semi-transparent background color for the rules */
+    width: 80%; /* Set the width of the rule section */
+    max-width: 600px; /* Limit the maximum width of the rule section */
+    border-radius: 10px; /* Add border radius to the rule section */
+    font-size:20px;
+    opacity:0;
+    animation: fadeIn 0.5s ease-in-out 5000ms forwards; /* Animate the opacity change after 5000ms */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Start with opacity 0 */
+            }
+            to {
+                opacity: 1; /* End with opacity 1 */
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>WINNER</h1>
+    </div>
+    <img class = "foreground1-image slide-up" src="vecteezy_leaf-tropical-badge-illustration_22727248.png" alt="foreground-image">
+    <div class="rule">
+        <h3 id="nightmare">nightmare</h3> <!-- Added ID "nightmare" -->
+     </div>
+    <img class = "foreground-image " src="banner-8480737_1920.jpg" alt="foreground-image">
+    <img class = "foreground1-image slide-up" src="vecteezy_leaf-tropical-badge-illustration_22727248.png" alt="foreground-image">
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+    // Get all elements with the class "foreground1-image"
+    const foregroundImages = document.querySelectorAll(".foreground1-image");
+
+    // After a delay, make the "NIGHTMARE" text visible
+    setTimeout(function() {
+        document.getElementById("nightmare").style.opacity = "1";
+    }, 5000); // Adjust the delay time to match the duration of the slide-up animation
+
+    // Loop through each ".foreground1-image" element
+    foregroundImages.forEach(function(image) {
+        // After the page has loaded, remove the "slide-up" class to trigger the animation
+        setTimeout(function() {
+            image.classList.remove("slide-up");
+        }, 100); // Adjust the delay time if necessary
+    });
+});
+
+    </script>
+</body>
+</html>
+
+

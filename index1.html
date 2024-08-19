@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-image: url('1714067877450.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            position: relative; /* Added for positioning absolute elements */
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+        }
+
+        .lamp-container {
+            position: relative; /* Added for positioning absolute elements */
+        }
+
+        /* Adjust the position of each image */
+        .image-box, .image1-box, .image2-box, .image3-box {
+            position: absolute;
+            z-index: 3; /* Ensure it's above other elements */
+            width: 60vw; /* Adjust the width of the image */
+            max-width: 300px; /* Maximum width */
+            height: auto; /* Maintain aspect ratio */
+            opacity: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .image-box { top: 25%; left: 50%; transform: translateX(-50%); }
+        .image1-box { top: 40%; left: 50%; transform: translateX(-50%); }
+        .image2-box { top: 55%; left: 50%; transform: translateX(-50%); }
+        .image3-box { top: 70%; left: 50%; transform: translateX(-50%); }
+
+        .image-box:hover, .image1-box:hover, .image2-box:hover, .image3-box:hover {
+            transform: translateX(-50%) scale(1.2); /* Zoom in effect when hovering */
+        }
+
+        .foreground-image {
+            position: absolute;
+            width: 15vw; /* Set the width of the image */
+            max-width: 70px;
+            height: auto; /* Automatically adjust the height while maintaining aspect ratio */
+            top: 10%;
+            right: 12%;
+            transform: translate(50%, -50%);
+        }
+
+        .user-points {
+            background-color: rgba(0, 0, 0, 0.0);
+            color: rgb(245, 237, 14);
+            padding: 10px;
+            border-radius: 5px;
+            position: fixed;
+            top: 6%;
+            right: 4%;
+            font-size: 5vw; /* Adjust font size */
+            max-height: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+    .image-box, .image1-box, .image2-box, .image3-box {
+        width: 80vw; /* Adjust width for smaller screens */
+        max-width: 250px; /* Maximum width */
+    }
+    .foreground-image {
+        width: 20vw; /* Adjust width for smaller screens */
+        max-width: 50px; /* Maximum width */
+        top: 8%; /* Adjust position to avoid overlap */
+        right: 20%;
+    }
+    .user-points {
+        font-size: 7vw; /* Adjust font size for smaller screens */
+        top: 5%;
+        right: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-box, .image1-box, .image2-box, .image3-box {
+        width: 90vw; /* Adjust width for smaller screens */
+        max-width: 200px; /* Maximum width */
+    }
+    .foreground-image {
+        width: 25vw; /* Adjust width for smaller screens */
+        max-width: 40px; /* Maximum width */
+        top: 10%; /* Adjust position to avoid overlap */
+        right: 20%;
+    }
+    .user-points {
+        font-size: 9vw; /* Adjust font size for smaller screens */
+        top: 7%;
+        right: 3%;
+    }
+}
+
+@media (max-width: 320px) {
+    .image-box, .image1-box, .image2-box, .image3-box {
+        width: 100vw; /* Adjust width for smaller screens */
+        max-width: 180px; /* Maximum width */
+    }
+    .foreground-image {
+        width: 30vw; /* Adjust width for smaller screens */
+        max-width: 35px; /* Maximum width */
+        top: 25%; /* Adjust position to avoid overlap */
+        right: 25%;
+    }
+    .user-points {
+        font-size: 10vw; /* Adjust font size for smaller screens */
+        top: 5%;
+        right: 5%;
+    }
+}
+@media (max-width: 1194px) {
+    .image-box, .image1-box, .image2-box, .image3-box {
+        width: 100vw; /* Adjust width for smaller screens */
+        max-width: 180px; /* Maximum width */
+    }
+    .foreground-image {
+        width: 80vw; /* Adjust width for smaller screens */
+        max-width: 10; /* Maximum width */
+        top: 7%; /* Adjust position to avoid overlap */
+        right: 5%;
+    }
+    .user-points {
+        font-size: 6vw; /* Adjust font size for smaller screens */
+        top: 5%;
+        right: 5%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="image-box-container">
+        <a href="rules.html">
+            <img class="image-box" src="20240425_231147.png" alt="Image 1">
+        </a>
+    </div>
+    <div class="image1-box-container">
+        <a href="giveaway.html">
+            <img class="image1-box" src="20240425_231250.png" alt="Image 1">
+        </a>
+    </div>
+    <div class="image2-box-container">
+        <a href="entries.html">
+            <img class="image2-box" src="20240425_231224.png" alt="Image 1">
+        </a>
+    </div>
+    <div class="image3-box-container">
+        <a href="genshinmerch.html">
+            <img class="image3-box" src="20240425_231132.png" alt="Image 1">
+        </a>
+    </div>
+    <img id="point" class="foreground-image" src="1710328702878.png" alt="Foreground Image 6">
+    <div class="user-points">   
+        <p id="points-display">-</p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mocked userId for demonstration. Replace with actual userId handling
+            const userId = localStorage.getItem('userId');
+
+            if (!userId) {
+                alert('User ID not found. Please log in again.');
+                window.location.href = 'login.html'; // Redirect to login page if userId is not found
+                return;
+            }
+
+            // Select the image boxes
+            var imageBoxes = document.querySelectorAll('.image-box, .image1-box, .image2-box, .image3-box');
+    
+            // Add click event listener to the image boxes
+            imageBoxes.forEach(function(imageBox) {
+                imageBox.addEventListener('click', function() {
+                    console.log('Image box clicked'); // Test click event
+                    // You can add additional logic here if needed
+                });
+            });
+
+            async function fetchUserPoints(userId) {
+                try {
+                    console.log('userId', userId);
+                    const response = await fetch(`http://localhost:3000/points?userId=${userId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include' // Ensure cookies are sent with the request if needed
+                    });
+                    console.log(response);
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log('Response data:', data);
+                        document.getElementById('points-display').textContent = data.points;
+                    } else {
+                        console.error('Failed to fetch points');
+                        alert('Failed to fetch points');
+                    }
+                } catch (error) {
+                    console.error('Error fetching user points:', error);
+                }
+            }
+
+            fetchUserPoints(userId); // Pass userId when calling the function
+            setInterval(() => fetchUserPoints(userId), 3000); // Fetch points every 3 seconds
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-image: url('1714067877450.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            position: relative; /* Added for positioning absolute elements */
+        }
+
+        .lamp-container {
+            position: relative; /* Added for positioning absolute elements */
+        }
+
+        /* Adjust the position of each image */
+        .image-box, .image1-box, .image2-box, .image3-box {
+            position: absolute;
+            z-index: 3; /* Ensure it's above other elements */
+            width: 300px; /* Adjust the width of the image */
+            height: 150px; /* Maintain aspect ratio */
+            opacity: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .image-box {
+            top: 25%;
+            left: 39%;
+        }
+
+        .image1-box {
+            top: 40%;
+            left: 39%;
+        }
+
+        .image2-box {
+            top: 55%;
+            left: 39%;
+        }
+
+        .image3-box {
+            top: 70%;
+            left: 39%;
+        }
+
+        .image-box:hover, .image1-box:hover, .image2-box:hover, .image3-box:hover {
+            transform: scale(1.2); /* Zoom in effect when hovering */
+        }
+
+        .signup-login-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px; /* Adjust the gap between buttons */
+            z-index: 3;
+        }
+
+        /* Style for the sign up and login buttons */
+        .signup-button, .login-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover effect for buttons */
+        .signup-button:hover, .login-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media queries for responsive design */
+        @media (max-width: 1200px) {
+            .image-box, .image1-box, .image2-box, .image3-box {
+                width: 250px;
+                height: 125px;
+            }
+            .image-box {
+                top: 20%;
+                left: 35%;
+            }
+            .image1-box {
+                top: 35%;
+                left: 35%;
+            }
+            .image2-box {
+                top: 50%;
+                left: 35%;
+            }
+            .image3-box {
+                top: 65%;
+                left: 35%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .image-box, .image1-box, .image2-box, .image3-box {
+                width: 200px;
+                height: 100px;
+            }
+            .image-box {
+                top: 15%;
+                left: 30%;
+            }
+            .image1-box {
+                top: 30%;
+                left: 30%;
+            }
+            .image2-box {
+                top: 45%;
+                left: 30%;
+            }
+            .image3-box {
+                top: 60%;
+                left: 30%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .image-box, .image1-box, .image2-box, .image3-box {
+                width: 150px;
+                height: 75px;
+            }
+            .image-box {
+                top: 10%;
+                left: 25%;
+            }
+            .image1-box {
+                top: 25%;
+                left: 25%;
+            }
+            .image2-box {
+                top: 40%;
+                left: 25%;
+            }
+            .image3-box {
+                top: 55%;
+                left: 25%;
+            }
+            .signup-login-container {
+                top: 10px;
+                right: 10px;
+                flex-direction: column;
+                gap: 5px;
+            }
+            .signup-button, .login-button {
+                padding: 5px 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .image-box, .image1-box, .image2-box, .image3-box {
+                width: 100px;
+                height: 50px;
+            }
+            .image-box {
+                top: 5%;
+                left: 20%;
+            }
+            .image1-box {
+                top: 20%;
+                left: 20%;
+            }
+            .image2-box {
+                top: 35%;
+                left: 20%;
+            }
+            .image3-box {
+                top: 50%;
+                left: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="image-box-container">
+        <a href="rules.html">
+            <img class="image-box" src="20240425_231147.png" alt="Image 1">
+        </a>
+    </div>
+    <div class="image1-box-container">
+        <a href="giveaway.html">
+            <img class="image1-box" src="20240425_231250.png" alt="Image 1">
+        </a>
+    </div>
+    <div class="image2-box-container">
+        <a href="entries.html">
+            <img class="image2-box" src="20240425_231224.png" alt="Image 1">
+        </a>
+    </div>
+    <div class="image3-box-container">
+        <a href="genshinmerch.html">
+            <img class="image3-box" src="20240425_231132.png" alt="Image 1">
+        </a>
+    </div>
+    <div class="signup-login-container">
+        <!-- Sign up button -->
+        <a href="signup.html" class="signup-button">Sign Up</a>
+        <!-- Login button -->
+        <a href="login.html" class="login-button">Login</a>
+    </div>
+    <script>
+        // Wait for the background image to fully load
+        var backgroundImage = new Image();
+        backgroundImage.onload = function() {
+            // Once the background image is fully loaded, display the foreground image, light effect, and images
+            var foregroundImage = document.querySelector('.foreground-image');
+            foregroundImage.style.display = 'block';
+    
+            var lightEffect = document.querySelector('.light-effect');
+            lightEffect.style.display = 'block';
+    
+            var imageBoxes = document.querySelectorAll('.image-box, .image1-box, .image2-box, .image3-box');
+            imageBoxes.forEach(function(imageBox) {
+                imageBox.style.display = 'block';
+            });
+        };
+        backgroundImage.src = 'https://images8.alphacoders.com/134/1342209.png'; // Set the source of the background image
+    
+        function scrollToNextPage() {
+            window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select the image boxes
+            var imageBoxes = document.querySelectorAll('.image-box, .image1-box, .image2-box, .image3-box');
+    
+            // Add click event listener to the image boxes
+            imageBoxes.forEach(function(imageBox) {
+                imageBox.addEventListener('click', function() {
+                    console.log('Image box clicked'); // Test click event
+    
+                    // Load the content of rules.html using fetch API
+                    fetch('http://localhost:8000/rules.html', {
+                    mode: 'no-cors'
+                })
+                .then(response => response.text())
+                .then(html => {
+                    // Process the HTML content
+                })
+                .catch(error => console.error('Error loading rules content:', error));
+
+                });
+            });
+        });
+        
+    </script>
+    
+    
+</body>
+</html>

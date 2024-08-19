@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background and Foreground Images</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("20240727_181518.png"); /* Background image URL */
+            background-size: cover; /* Ensure the entire image fits within the background */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            background-position: center center; /* Center the background */
+            color: #fff; /* White text color */
+            overflow: hidden; /* Disable scrolling */
+            position: relative; /* Set the body position to relative */
+        }
+
+        .foreground-image {
+            position: absolute; /* Position the foreground images absolutely within the body */
+            width: 200px; /* Set the width of the foreground images */
+            height: auto; /* Automatically adjust the height while maintaining aspect ratio */
+        }
+
+        #left-top {
+            top: 20%;
+            left: -10%;
+            height: 50%;
+            width: auto;
+            z-index: 1;
+        } /* Adjust position of foreground image 1 */
+
+        #right-top {
+            top: 18%;
+            left: 7%;
+            height: 52%;
+            width: auto;
+            z-index: 1;
+        } /* Adjust position of foreground image 3 */
+
+        #left-bottom {
+            top: 20%;
+            left: 26%;
+            height: 50%;
+            width: auto;
+            z-index: 1;
+        } /* Adjust position of foreground image 4 */
+
+        #right-bottom { top: 20%; left: 44%; height:50%; width:auto; z-index: 1 }
+        
+        #right { top: 20%; left: 62%; height:50%; width:auto; z-index: 1 }
+
+        #lootbox { top: 65%; left: -5%; height:50%; width:auto; z-index: 1 }
+
+        #ambells { top: 65%; left: 43%; height:50%; width:auto; z-index: 1 }
+
+        #link-lootbox { top: 65%; left: 25%; height:40%; width:auto; z-index: 1 ; animation: bulgeAnimation ease-in 2s infinite; }
+
+        #link-ambells { top: 65%; left: 72%; height:40%; width:auto; z-index: 1  ; animation: bulgeAnimation ease-in 2s infinite;}
+
+       
+
+        /* Define your bulge animation */
+        @keyframes bulgeAnimation {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+        
+
+       
+
+        #myTextBox {
+            position: absolute;  /* Allows positioning using top, left, etc. */
+            top: 1%;           /* Distance from the top of the container */
+            left: 59%;           /* Center horizontally */
+            transform: translateX(-50%); 
+            border: none;           /* Removes the border */
+            padding: 10px;          /* Adds some padding inside the text box */
+            border-radius: 5px;     /* Rounds the corners */
+            background-color: transparent; /* Sets a light grey background */
+            font-size: 50px; 
+            width:100%; 
+            font-family: 'Algerian', serif;
+        }
+
+        #myTextBox1 {
+            position: absolute;  /* Allows positioning using top, left, etc. */
+            top: 12%;           /* Distance from the top of the container */
+            left: 50%;           /* Center horizontally */
+            transform: translateX(-50%); 
+            border: none;           /* Removes the border */
+            padding: 10px;          /* Adds some padding inside the text box */
+            border-radius: 5px;     /* Rounds the corners */
+            background-color: transparent; /* Sets a light grey background */
+            font-size: 50px; /* Adjusts the font size */
+            font-family: 'Algerian', serif;
+        }
+
+        #myTextBox2 {
+            position: absolute;  /* Allows positioning using top, left, etc. */
+            top: 67%;           /* Distance from the top of the container */
+            left: 58%;           /* Center horizontally */
+            transform: translateX(-50%); 
+            border: none;           /* Removes the border */
+            padding: 10px;          /* Adds some padding inside the text box */
+            border-radius: 5px;     /* Rounds the corners */
+            background-color: transparent; /* Sets a light grey background */
+            font-size: 40px; /* Adjusts the font size */
+            font-family: 'Roboto', san-serif;
+        }
+
+
+        /* Base styles for mobile devices */
+@media (max-width: 600px) {
+    .foreground-image {
+        width: 100px; /* Adjust image size for smaller screens */
+    }
+    
+    #left-top, #right-top, #left-bottom, #right-bottom, #right, #lootbox, #ambells, #link-lootbox, #link-ambells {
+        height: 30%; /* Reduce image height on smaller screens */
+    }
+    
+    #link-lootbox, #link-ambells {
+        height: 30%; /* Ensure the animated images are appropriately sized */
+    }
+
+    #myTextBox, #myTextBox1, #myTextBox2 {
+        font-size: 20px; /* Reduce font size for mobile screens */
+        width: 90%; /* Adjust text box width for mobile screens */
+    }
+    
+    #myTextBox, #myTextBox1 {
+        top: 2%;
+        left: 50%;
+    }
+    
+    #myTextBox2 {
+        top: 60%;
+        left: 50%;
+    }
+}
+
+/* Styles for tablets and small screens */
+@media (min-width: 601px) and (max-width: 900px) {
+    .foreground-image {
+        width: 150px; /* Adjust image size for medium screens */
+    }
+    
+    #left-top, #right-top, #left-bottom, #right-bottom, #right, #lootbox, #ambells, #link-lootbox, #link-ambells {
+        height: 40%; /* Adjust image height for tablets */
+    }
+
+    #link-lootbox, #link-ambells {
+        height: 40%; /* Ensure animated images are appropriately sized */
+    }
+
+    #myTextBox, #myTextBox1, #myTextBox2 {
+        font-size: 30px; /* Adjust font size for tablets */
+        width: 80%; /* Adjust text box width for tablets */
+    }
+    
+    #myTextBox, #myTextBox1 {
+        top: 5%;
+        left: 50%;
+    }
+    
+    #myTextBox2 {
+        top: 65%;
+        left: 50%;
+    }
+}
+
+/* Styles for small desktops */
+@media (min-width: 901px) and (max-width: 1200px) {
+    .foreground-image {
+        width: 180px; /* Adjust image size for small desktops */
+    }
+    
+    #left-top, #right-top, #left-bottom, #right-bottom, #right, #lootbox, #ambells, #link-lootbox, #link-ambells {
+        height: 45%; /* Adjust image height for small desktops */
+    }
+
+    #link-lootbox, #link-ambells {
+        height: 45%; /* Ensure animated images are appropriately sized */
+    }
+
+    #myTextBox, #myTextBox1, #myTextBox2 {
+        font-size: 40px; /* Adjust font size for small desktops */
+        width: 70%; /* Adjust text box width for small desktops */
+    }
+    
+    #myTextBox, #myTextBox1 {
+        top: 8%;
+        left: 50%;
+    }
+    
+    #myTextBox2 {
+        top: 70%;
+        left: 50%;
+    }
+}
+
+
+
+    </style>
+</head>
+<body>
+    <form>
+        <label for="myTextBox">Text Box:</label>
+        <input type="text" id="myTextBox" name="myTextBox" value="Purchase Genesis Crystals and other in-game">
+    </form>
+    <form>
+        <label for="myTextBox1">Text Box:</label>
+        <input type="text" id="myTextBox1" name="myTextBox1" value="Items at upto 20% Discount">
+    </form>
+    <form>
+        <label for="myTextBox2">Text Box:</label>
+        <input type="text" id="myTextBox2" name="myTextBox2" value="Our Partners">
+    </form>
+    
+    <img id="left-top" class="foreground-image" src="20240727_181334.png" alt="Foreground Image 1">
+    <img id="right-top" class="foreground-image" src="20240727_181358.png" alt="Foreground Image 3">
+    <img id="left-bottom" class="foreground-image" src="20240727_181415.png" alt="Foreground Image 4">
+    <img id="right-bottom" class="foreground-image" src="20240727_181436.png" alt="Foreground Image 6">
+    <img id="right" class="foreground-image" src="20240727_181458.png" alt="Foreground Image 7">
+    <img id="lootbox" class="foreground-image" src="20240727_181047.png" alt="Foreground Image 8">
+    <img id="ambells" class="foreground-image" src="20240727_181019.png" alt="Foreground Image 9">
+    <a href = "https://lootbar.gg/top-up/genshin-impact-top-up?utm_source=generalvansh">
+    <img id="link-lootbox" class="foreground-image" src="20240727_181223.png" alt="Foreground Image 9" >
+    </a>
+    <a href = "https://ambsells.com/?ref=generalvansh">
+    <img id="link-ambells" class="foreground-image" src="20240727_181223.png" alt="Foreground Image 9">
+    </a>
+    
+</body>
+</html>
+
+
+

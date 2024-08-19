@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rules.html</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height:100%;
+            width:100%;
+            font-family: Arial, sans-serif;
+            background-image: url("1710650401097.jpg"); /* Background image URL */
+            background-size: cover; /* Ensure the entire image fits within the background */
+            color: #131212; /* Dark gray text color */
+            height: 100vh; /* Set the height of the body to 100% of the viewport height */
+            overflow: hidden; /* Hide any overflow content */
+            position: relative; /* Ensure positioned elements inside body are relative to it */
+            display: flex; /* Use flexbox */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+        }
+
+        .content {
+            padding: 20px; /* Add padding to the content */
+            text-align: center; /* Center align the content */
+            position: absolute; /* Position the content absolutely */
+            top: 25%; /* Move the content 50% from the top */
+            left: 58%; /* Move the content 50% from the left */
+            transform: translate(-50%, -50%); /* Center the content horizontally and vertically */
+            z-index: 2; /* Ensure the content is above the foreground image */
+            color:#0a0909;
+        }
+
+        h1 {
+            color: #020202; /* White heading color */
+        }
+
+        p {
+            color: #fff; /* White paragraph text color */
+            line-height: 1.6; /* Set the line height for paragraphs */
+        }
+        .foreground1-image {
+            position: absolute; /* Position the foreground image absolutely */
+            top: 18%; /* Position the foreground image vertically at 50% from the top */
+            left: 5%; /* Position the foreground image horizontally at 50% from the left */
+            height:auto;
+            width: 40vw;
+            max-width: 80%; /* Limit the maximum width of the foreground image */
+            max-height: 80%; /* Limit the maximum height of the foreground image */
+            z-index: 2; /* Ensure the foreground image is above the background */
+            margin-left:auto;
+            flex-shrink:0;
+        }
+        .left-section,
+        .right-section {
+            flex: 1; /* Equal width for both sections */
+            display: flex;
+            justify-content: center;
+        }
+        .rule {
+    padding: 20px; /* Add padding to the rule section */
+    text-align: left; /* Align the rules to the left */
+    position: relative; /* Position the rules absolutely */
+    top: 25vb; /* Move the rules 50% from the top */
+    left: 61vb; /* Move the rules 50% from the left */
+    transform: translate(-50%, -50%); /* Center the rules horizontally and vertically */
+    z-index: 3; /* Ensure the rules are above the foreground images */
+    color: #090808; /* White text color for the rules */
+    background-color: transparent; /* Semi-transparent background color for the rules */
+    width: 80vw; /* Set the width of the rule section */
+    max-width: 600px; /* Limit the maximum width of the rule section */
+    border-radius: 10px; /* Add border radius to the rule section */
+}
+
+.foreground-image {
+            position: absolute; /* Position the foreground image absolutely */
+            top: 10%; /* Position the foreground image vertically at 50% from the top */
+            left: 8%; /* Position the foreground image horizontally at 50% from the left */
+            height:auto;
+            width:200vw;
+            max-width: 85%; /* Limit the maximum width of the foreground image */
+            max-height: 85%; /* Limit the maximum height of the foreground image */
+            z-index: 1; /* Ensure the foreground image is above the background */
+            margin-right:auto;
+            flex-shrink:0;
+}
+
+/* General Media Query for Tablets */
+@media (max-width: 912px) and (min-width: 770px) {
+    .foreground-image {
+        width: 60vw; /* Adjust width for tablets */
+        max-width: 70%; /* Limit the maximum width */
+        top: 12%; /* Adjust vertical position */
+        left: 10%; /* Adjust horizontal position */
+    }
+    .rule {
+        width: 90vw; /* Adjust width for tablets */
+        max-width: 500px; /* Limit the maximum width */
+        padding: 15px; /* Adjust padding for tablets */
+        top:20%;
+    }
+    .content {
+        top: 20%; /* Adjust vertical position */
+        left: 50%; /* Adjust horizontal position */
+        transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    }
+    .foreground1-image {
+        width: 35vw; /* Adjust width for tablets */
+        max-width: 70%; /* Limit the maximum width */
+        top: 20%; /* Adjust vertical position */
+        left: 10%; /* Adjust horizontal position */
+    }
+}
+
+/* For Small Screens / Phones */
+@media (max-width: 769px) {
+    .foreground-image {
+        width: 50%; /* Adjust width for smaller screens */
+        top: 15%; /* Adjust vertical position */
+        left: 5%; /* Adjust horizontal position */
+    }
+    .rule {
+        position:absolute;
+        top:47%;
+        left:24%;
+        width: 30%; /* Adjust width for smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+    .content {
+        top: 10%; /* Adjust vertical position */
+        left: 50%; /* Adjust horizontal position */
+        }
+    .foreground1-image {
+        width: 30vw; /* Adjust width for smaller screens */
+        max-width: 60%; /* Limit the maximum width */
+        top: 25%; /* Adjust vertical position */
+        left: 10%; /* Adjust horizontal position */
+    }
+}
+
+/* For Extra Small Screens / Phones */
+@media (max-width: 480px) {
+    .foreground-image {
+        width: 160%; /* Adjust width for extra small screens */
+        max-width: 400%; /* Limit the maximum width */
+        height: 60%;
+        top: 20%; /* Adjust vertical position */
+        left: 1%; /* Adjust horizontal position */
+    }
+    .rule {
+        position:absolute;
+        top:50%;
+        left:110%;
+        font-size: 13px;
+        width: 90vw; /* Adjust width for extra small screens */
+        max-width: 300px; /* Limit the maximum width */
+        padding: 5px; /* Adjust padding for extra small screens */
+    }
+    .content {
+        top: 28%; /* Adjust vertical position */
+        left: 90%; /* Adjust horizontal position */
+        transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    }
+    .foreground1-image {
+        width: 80%; /* Adjust width for extra small screens */
+        max-width: 100%; /* Limit the maximum width */
+        top: 40%; /* Adjust vertical position */
+        left: 10%; /* Adjust horizontal position */
+    }
+}
+
+/* For Very Small Screens / Phones */
+@media (max-width: 320px) {
+    .foreground-image {
+        width: 30vw; /* Adjust width for very small screens */
+        max-width: 40%; /* Limit the maximum width */
+        top: 25%; /* Adjust vertical position */
+        left: 5%; /* Adjust horizontal position */
+    }
+    .rule {
+        width: 90vw; /* Adjust width for very small screens */
+        max-width: 250px; /* Limit the maximum width */
+        padding: 3px; /* Adjust padding for very small screens */
+    }
+    .content {
+        top: 40%; /* Adjust vertical position */
+        left: 50%; /* Adjust horizontal position */
+        transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    }
+    .foreground1-image {
+        width: 20vw; /* Adjust width for very small screens */
+        max-width: 40%; /* Limit the maximum width */
+        top: 35%; /* Adjust vertical position */
+        left: 10%; /* Adjust horizontal position */
+    }
+}
+
+/* Media query for devices with width between 600px and 1024px */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .foreground-image {
+        width: 85%; /* Adjust width for devices in this range */
+        max-width: 90%; /* Limit the maximum width */
+        top: 15%; /* Adjust vertical position */
+        left: 10%; /* Adjust horizontal position */
+    }
+    .rule {
+        position:absolute;
+        top:30%;
+        left:65%;
+        font-size: 13px;
+        width: 88vw; /* Adjust width for devices in this range */
+        max-width: 500px; /* Limit the maximum width */
+        padding: 15px; /* Adjust padding */
+    }
+    .content {
+        position:absolute;
+        top: 19%; /* Adjust vertical position */
+        left: 56%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Center vertically */
+    }
+    .foreground1-image {
+        width: 40vw; /* Adjust width for devices in this range */
+        max-width: 70%; /* Limit the maximum width */
+        top: 20%; /* Adjust vertical position */
+        left: 10%; /* Adjust horizontal position */
+    }
+}
+
+    </style>
+</head>
+<body> 
+    <div class="container">
+        <div class="left-section">
+            <img class="foreground-image" src="1710650424919.png" alt="Foreground Image">
+    <div class="content">
+        <h1>RULES</h1>
+    </div>
+
+    <img class="foreground-image" src="1710650424919.png" alt="Foreground Image">
+
+    <div class="rule">
+        <h4>1. Players Need to set a Username with the last four letters of their UID at the end.</h4>
+        <h4>2. A player can only participate in the giveaway by earning Entries by completing Tasks.</h4>    
+        <h4>3. Players with the most number of Entries have a higher chance of winning.</h4>  
+        <h4>4. Winners will receive a mail to the gmail they have connected with,winners will be asked to provide their UID and server Name , so we can send welkin moon directly to their account.</h4>
+        <h4>5. We use only Razer gold For Giveaways so if any player becomes a victim of Someone Else using our name and asking for their In-game Login Info,then neither General Vansh nor the Management is responsible for it.</h4>
+    </div>
+    </div>
+    <div class="right-section">
+        <img class="foreground1-image" src="1710326530161.png" alt="Foreground Image">
+    </div>
+</body>
+</html>

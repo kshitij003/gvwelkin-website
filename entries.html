@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entries</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("1714067877450.jpg"); /* Background image URL */
+            background-size: cover; /* Ensure the entire image fits within the background */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            background-position: center center; /* Center the background */
+            color: #fff; /* White text color */
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .foreground-image {
+            position: absolute;
+            width: 70px; /* Set the width of the image */
+            height: auto; /* Automatically adjust the height while maintaining aspect ratio */
+        }
+
+        #point { top: 10%; right: 12%; transform: translate(50%, -50%); }
+
+        .claim-image {
+            position: absolute; /* Position the foreground image absolutely within its container */
+            width: 200px; /* Set the width of the image */
+            height: auto; /* Automatically adjust the height while maintaining aspect ratio */
+        }
+
+        /* Adjust the top, left, right, or bottom properties for positioning */
+        /* Example: */
+       
+        #claim2 { top: 75%; left: 80%; transform: translate(-50%, -50%); width: 30%; }
+        #claim3 { top: 55%; left: 80%; transform: translate(-50%, -50%); width: 30%; }
+        #claim4 { top: 35%; left: 80%; transform: translate(-50%, -50%); width: 30%; }
+
+        .black-box {
+            position: absolute;
+            background-color: black;
+            width: 200px;
+            height: 200px;
+        }
+
+        #black-box1 { top: 30%; left: 30%; width: 25%; height: 10%; }
+        #black-box2 { top: 50%; left: 30%; width: 25%; height: 10%; }
+        #black-box3 { top: 70%; left: 30%; width: 25%; height: 10%; }
+
+        .box-text {
+            color: #fff;
+            font-size: 30px;
+            position: absolute;
+        }
+
+        #box-text1 { top: 25%; left: 25%; }
+        #box-text2 { top: 25%; left: 25%; }
+        #box-text3 { top: 25%; left: 15%; }
+
+        #entry-message {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            display: none;
+            z-index: 4;
+        }
+        #entry-message2 {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            display: none;
+            z-index: 4;
+        }
+
+        .user-points {
+            background-color: rgba(0, 0, 0, 0.0);
+            color: rgb(245, 237, 14);
+            padding: 10px;
+            border-radius: 5px;
+            position: fixed;
+            top: -2%;
+            right: 5%;
+            width: auto;
+            height: 30px;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="black-box1" class="black-box"><div id="box-text1" class="box-text">Latest Video</div></div>
+    <div id="black-box2" class="black-box"><div id="box-text2" class="box-text">Daily Login</div></div>
+    <div id="black-box3" class="black-box"><div id="box-text3" class="box-text">Share The Website</div></div>
+    <a href = "https://youtu.be/_xllNphh3IY?si=IAf2bsNmU8FHjmNs">
+    <img id="claim4" class="claim-image" src="20240426_112827.png" alt="Foreground Image 4"  data-image-id="claim4">
+    </a>
+    <img id="claim2" class="claim-image" src="20240426_112827.png" alt="Foreground Image 3"  data-image-id="claim2">
+    <img id="claim3" class="claim-image" src="20240426_112827.png" alt="Foreground Image 5" data-image-id="claim3">
+    <img id="point" class="foreground-image" src="1710328702878.png" alt="Foreground Image 6">
+    <div class="user-points">   
+        <p id="points-display">-</p>
+    </div>
+    <div id="entry-message">Claimed</div>
+    <div id="entry-message2">Error Claiming</div>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+        // Function to handle the entry process
+        const userId = localStorage.getItem('userId');
+
+if (!userId) {
+alert('User ID not found. Please log in again.');
+window.location.href = 'login.html'; // Redirect to login page if userId is not found
+return;
+}
+        async function handleEntry(imageId,userId) {
+    const lastClaimTimestampKey = 'lastClaimTimestamp_' + imageId;
+    const lastClaimTimestamp = localStorage.getItem(lastClaimTimestampKey);
+    if (lastClaimTimestamp) {
+        const currentTime = new Date().getTime();
+        const timeSinceLastClaim = currentTime - parseInt(lastClaimTimestamp);
+        const hoursSinceLastClaim = timeSinceLastClaim / (1000 * 60 * 60);
+        if (hoursSinceLastClaim < 24) {
+            // Already claimed within the past 24 hours
+            alert('You have already claimed this image within the past 24 hours.');
+            return;
+        }
+    }
+
+    try {
+        console.log(userId);
+        const response = await fetch(`http://localhost:3000/entry?userId=${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+        });
+
+        if (response.status === 200) {
+            // Show the entry message if the request is successful
+            document.getElementById("entry-message").style.display = "block";
+            // Hide the message after 1 second
+            setTimeout(function() {
+                document.getElementById("entry-message").style.display = "none";
+            }, 1000);
+
+            const currentTime = new Date().getTime();
+            // Set the correct localStorage key
+            localStorage.setItem(lastClaimTimestampKey, currentTime.toString());
+        } else {
+            // Show the entry unsuccessful message if there's an error
+            document.getElementById("entry-message2").style.display = "block";
+            // Hide the message after 1 second
+            setTimeout(function() {
+                document.getElementById("entry-message2").style.display = "none";
+            }, 1000);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        // Show the entry unsuccessful message if there's an error
+        document.getElementById("entry-message2").style.display = "block";
+        // Hide the message after 1 second
+        setTimeout(function() {
+            document.getElementById("entry-message2").style.display = "none";
+        }, 1000);
+    }
+}
+
+
+
+            async function fetchUserPoints(userId) {
+            try {
+                const response = await fetch(`http://localhost:3000/points?userId=${userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                    document.getElementById('points-display').textContent = data.points;
+                } else {
+                    console.error('Failed to fetch points');
+                    alert('Failed to fetch points');
+                }
+            } catch (error) {
+                console.error('Error fetching user points:', error);
+            }
+        }
+
+       
+        fetchUserPoints(userId);
+        setInterval(() => fetchUserPoints(userId), 3000);
+        
+        document.querySelectorAll('.claim-image').forEach(image => {
+    image.addEventListener('click', function() {
+        handleEntry(this.dataset.imageId, userId);
+    });
+});
+
+    });
+    </script>   
+</body>
+</html>
